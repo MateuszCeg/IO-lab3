@@ -12,13 +12,19 @@
 
 #include "Szkola.h"
 #include "Nauczyciel.h"
+#include <iostream>
 
-Szkola::Szkola(string Nazwa, string Adres, Nauczyciel Nauczyciel) {
-    Nazwa = Nazwa;
-    Adres = Adres;
-    Nauczyciel = Nauczyciel;
+using namespace std;
+
+Szkola::Szkola(string Nazwa, string Adres, Nauczyciel* p_nauczyciel) {
+    this->Nazwa = Nazwa;
+    this->Adres = Adres;
+    this->Nauczyciele.push_back(p_nauczyciel);
 }
-
+Szkola::~Szkola(){
+    while (!this->Nauczyciele.empty())
+        this->Nauczyciele.pop_back();
+}
 void Szkola::SetNazwa(string Nazwa) {
     Nazwa = Nazwa;
 }
@@ -34,7 +40,40 @@ string Szkola::GetNazwa() {
 string Szkola::GetAdres() {
     return Adres;
 }
-Nauczyciel GetNauczyciel() {
-    return Nauczyciel;
+vector<Nauczyciel*> Szkola::GetNauczyciel(){
+    return Nauczyciele;
+}
+void Szkola::AttachNauczyciel(Nauczyciel* N){
+    this->Nauczyciele.push_back(N);
+}
+void Szkola::DetachNauczyciel(){
+    if(Nauczyciele.empty())
+        cout<<"Brak nauczycieli.\n";
+    else
+        this->Nauczyciele.pop_back();
 }
 
+////////////////////////////////////////////////////////////
+
+int main()
+{
+    Nauczyciel* N1 = new Nauczyciel("Adam", "Kowal", 123456789, "Matematyk", 1500.99);
+
+    Szkola* S = new Szkola("LO", "Aleja 1", N1);
+
+    cout<<"Nazwa szkoly: "<<S->GetNazwa()<<" | Adres: "<<S->GetAdres()<<" "<<"\n";
+
+    cout<<"Nauczyciel: "<<S->GetNauczyciel().back()->GetImie()<<" "<<S->GetNauczyciel().back()->GetNazwisko()
+         <<", Profesia: "<< S->GetNauczyciel().back()->GetSpecializacja()<<"\n";
+
+    Nauczyciel* N2 = new Nauczyciel("Mariusz", "Bim", 133456789, "Informatyk", 1800.21);
+
+    S->AttachNauczyciel(N2);
+
+    cout<<"Nauczyciel: "<<S->GetNauczyciel().back()->GetImie()<<" "<<S->GetNauczyciel().back()->GetNazwisko()
+         <<", Profesia: "<< S->GetNauczyciel().back()->GetSpecializacja()<<"\n";
+
+    cin.get();
+
+    return 0;
+}

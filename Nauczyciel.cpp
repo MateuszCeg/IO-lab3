@@ -13,10 +13,9 @@
 #include "Nauczyciel.h"
 
 Nauczyciel::Nauczyciel(string Imie, string Nazwisko, int Pesel, string Specializacja, float Pensja): Czlowiek(Imie, Nazwisko, Pesel) {
-    Specializacja = Specializacja;
-    Pensja = Pensja;
+    this->Specializacja = Specializacja;
+    this->Pensja = Pensja;
 }
-
 void Nauczyciel::SetSpecializacja(string Specializacja) {
     Specializacja = Specializacja;
 }

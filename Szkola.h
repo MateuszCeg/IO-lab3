@@ -14,21 +14,25 @@
 #define _SZKOLA_H
 
 #include <string>
+#include <vector>
 #include "Nauczyciel.h"
 using namespace std;
 
 class Szkola {
 public:
-    Szkola(string Nazwa, string Adres, Nauczyciel Nauczyciel);
+    Szkola(string Nazwa, string Adres, Nauczyciel* Nauczyciel);
+    ~Szkola();
 	void SetNazwa(string Nazwa);
 	void SetAdres(string Adres);
     string GetNazwa();
     string GetAdres();
-    Nauczyciel GetNauczyciel();
+    vector<Nauczyciel*> GetNauczyciel();
+    void AttachNauczyciel(Nauczyciel*);
+    void DetachNauczyciel();
 private:
 	string Nazwa;
 	string Adres;
-    Nauczyciel Nauczyciel;
+    vector<Nauczyciel*> Nauczyciele;
 };
 
 #endif  //_SZKOLA_H

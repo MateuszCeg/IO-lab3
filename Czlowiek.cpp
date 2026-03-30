@@ -13,9 +13,9 @@
 #include "Czlowiek.h"
 
 Czlowiek::Czlowiek(string Imie, string Nazwisko, int Pesel) {
-    Imie = Imie;
-    Nazwisko = Nazwisko;
-    Pesel = Pesel;
+    this->Imie = Imie;
+    this->Nazwisko = Nazwisko;
+    this->Pesel = Pesel;
 }
 
 void Czlowiek::SetImie(string Imie) {

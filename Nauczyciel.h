@@ -19,13 +19,14 @@ using namespace std;
 
 class Nauczyciel : public Czlowiek {
 public:
-	string Specializacja;
-	float Pensja;
     Nauczyciel(string Imie, string Nazwisko, int Pesel, string Specializacja, float Pensja);
 	void SetSpecializacja(string Specializacja);
 	void SetPensja(float Ilosc);
     string GetSpecializacja();
     float GetPensja();
+private:
+    string Specializacja;
+    float Pensja;
 };
 
 #endif  //_NAUCZYCIEL_H
